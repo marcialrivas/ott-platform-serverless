@@ -31,6 +31,7 @@ jobs:
             coverage xml -o ../../coverage-reports/movies-coverage-.xml
             cd ..
             cd ..
+            cat coverage-reports/movies-coverage-.xml
             pwd
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
