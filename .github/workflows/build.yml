@@ -28,6 +28,7 @@ jobs:
             cd front-end-microservices/movies
             pwd
             coverage run -m unittest discover -p "*_test.py"
+            coverage xml -o ../../coverage-reports/movies-coverage-.xml
             cd ..
             cd ..
             pwd
