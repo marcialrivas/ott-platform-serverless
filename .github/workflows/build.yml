@@ -6,7 +6,7 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
-  sonarcloud:
+  build:
     name: SonarCloud
     runs-on: ubuntu-latest
     steps:
@@ -35,8 +35,9 @@ jobs:
             pwd
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
-        args: >
-            -Dsonar.python.coverage.reportPaths=coverage-reports/movies-coverage-.xml
+        with:
+            args: >
+                -Dsonar.python.coverage.reportPaths=coverage-reports/movies-coverage-.xml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
