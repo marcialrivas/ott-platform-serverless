@@ -27,7 +27,7 @@ jobs:
             pwd
             cd front-end-microservices/movies
             pwd
-            coverage run -m unittest discover -p "*_test.py" --omit lambda_get_movie.py
+            coverage run -m unittest discover -p "*_test.py" --omit=lambda_get_movie.py
             coverage xml -o ../../coverage-reports/movies-coverage-.xml --skip-empty
             sed -i 's/\/home\/runner\/work\/ott-platform-serverless\/ott-platform-serverless\//\/github\/workspace\//g' ../../coverage-reports/movies-coverage-.xml
             cd ..
