@@ -19,11 +19,18 @@ jobs:
           python-version: '3.8'
       - name: Install dependencies
         run: |
-            cd front-end-microservices/movies
+            pwd
             pip install coverage
+            pwd
       - name: Run tests with coverage
         run: |
+            pwd
+            cd front-end-microservices/movies
+            pwd
             coverage run -m unittest discover -p "*_test.py"
+            cd ..
+            cd ..
+            pwd
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
