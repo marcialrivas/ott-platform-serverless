@@ -39,7 +39,7 @@ jobs:
         with:
             args: >
                 -Dsonar.python.coverage.reportPaths=coverage-reports/movies-coverage-.xml
-                -Dsonar.exclusions=front-end-microservices/movies/test
+                -Dsonar.exclusions=front-end-microservices/movies/test/**
                 -Dsonar.sources=front-end-microservices/movies
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
