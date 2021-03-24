@@ -6,8 +6,8 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
-  build:
-    name: SonarCloud
+  sonarcloud:
+    name: Build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -28,16 +28,22 @@ jobs:
             cd front-end-microservices/movies
             pwd
             coverage run -m unittest discover -p "*_test.py"
-            coverage xml -o ../../coverage-reports/movies-coverage-.xml
+            coverage xml -o ../../coverage-reports/movies-coverage-.xml --skip-empty
             cd ..
             cd ..
             cat coverage-reports/movies-coverage-.xml
             pwd
+      - name: fix code coverage paths
+	    working-directory: ./coverage-reports
+	    run: |
+	        sed -i 's/\/home\/runner\/work\/ott-platform-serverless\/ott-platform-serverless\//\/github\/workspace\//g' lcov.info
+	        sed -i 's/\/home\/runner\/work\/ott-platform-serverless\/ott-platform-serverless\//\/github\/workspace\//g' movies-coverage-.xml
+
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         with:
             args: >
                 -Dsonar.python.coverage.reportPaths=coverage-reports/movies-coverage-.xml
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
