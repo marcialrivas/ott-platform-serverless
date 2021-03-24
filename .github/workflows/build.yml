@@ -34,11 +34,10 @@ jobs:
             cat coverage-reports/movies-coverage-.xml
             pwd
       - name: fix code coverage paths
-	    working-directory: ./coverage-reports
-	    run: |
-	        sed -i 's/\/home\/runner\/work\/ott-platform-serverless\/ott-platform-serverless\//\/github\/workspace\//g' lcov.info
-	        sed -i 's/\/home\/runner\/work\/ott-platform-serverless\/ott-platform-serverless\//\/github\/workspace\//g' movies-coverage-.xml
-
+        working-directory: ./coverage-reports
+	run: |
+	    sed -i 's/\/home\/runner\/work\/ott-platform-serverless\/ott-platform-serverless\//\/github\/workspace\//g' lcov.info
+	    sed -i 's/\/home\/runner\/work\/ott-platform-serverless\/ott-platform-serverless\//\/github\/workspace\//g' movies-coverage-.xml
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         with:
