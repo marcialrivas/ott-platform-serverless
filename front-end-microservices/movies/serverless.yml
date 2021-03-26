@@ -1,0 +1,13 @@
+service: movies
+
+provider:
+    name: aws
+    runtime: python3.8
+    stage: dev
+    region: us-east-1
+    lambdaHashingVersion: 20201221
+    
+functions:
+    get_movie:
+        name: get_movie_${self.custom.stage}
+        handler: lambda_get_movie.handler
