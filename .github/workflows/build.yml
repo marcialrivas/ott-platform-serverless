@@ -52,6 +52,7 @@ jobs:
       - run: npm ci
       - name: serverless deploy stage
         uses: serverless/github-action@master
+        working-directory: ./front-end-microservices/movies
         with:
           args: deploy
         env:
