@@ -129,4 +129,9 @@ dmypy.json
 .pyre/
 
 #Serverless
-.serverless/
+.serverless/**
+*/*/.serverless/**
+
+#Node modules
+*/*/node_modules/**
+
